@@ -1,8 +1,13 @@
-const Home = ()=>{
+import { prisma } from "@repo/db"
+
+const Home =async ()=>{
+  const allUser = await prisma.user.findMany();
   return (
-    <>
-    hi next turborepo
-    </>
+    <div>
+      {
+        JSON.stringify(allUser)
+      }
+    </div>
   )
 }
 
