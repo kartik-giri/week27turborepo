@@ -14,6 +14,7 @@
       "name": "http-server",
       "dependencies": {
         "@repo/db": "*",
+        "@repo/zod": "*",
         "@types/express": "^5.0.6",
         "express": "^5.2.1",
       },
@@ -30,6 +31,7 @@
       "version": "0.1.0",
       "dependencies": {
         "@repo/db": "*",
+        "@repo/zod": "*",
         "next": "16.2.9",
         "react": "19.2.4",
         "react-dom": "19.2.4",
@@ -49,6 +51,7 @@
       "name": "ws-server",
       "dependencies": {
         "@repo/db": "*",
+        "@repo/zod": "*",
         "@types/ws": "^8.18.1",
         "ws": "^8.21.0",
       },
@@ -109,6 +112,12 @@
         "@types/react-dom": "19.2.2",
         "eslint": "^9.39.1",
         "typescript": "5.9.2",
+      },
+    },
+    "packages/zod": {
+      "name": "@repo/zod",
+      "dependencies": {
+        "zod": "^4.4.3",
       },
     },
   },
@@ -336,6 +345,8 @@
     "@repo/typescript-config": ["@repo/typescript-config@workspace:packages/typescript-config"],
 
     "@repo/ui": ["@repo/ui@workspace:packages/ui"],
+
+    "@repo/zod": ["@repo/zod@workspace:packages/zod"],
 
     "@rtsao/scc": ["@rtsao/scc@1.1.0", "", {}, "sha512-zt6OdqaDoOnJ1ZYsCYGt9YmWzDXl4vQdKTyJev62gFhRGKdx7mcT54V9KIjg+d2wi9EXsPvAPKe7i7WjfVWB8g=="],
 
