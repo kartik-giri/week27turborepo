@@ -1,0 +1,43 @@
+services:
+ postgres:
+   image: postgres
+   environment:
+     - POSTGRES_PASSWORD=mysecretpassword
+   ports:
+     - "5432:5432"
+  
+ webapp:
+   build:
+     context: .
+     dockerfile: docker/web.Dockerfile
+   environment:
+     - DATABASE_URL=postgresql://postgres:mysecretpassword@localhost:5432/postgres
+   ports:
+     - "3000:3000"
+   depends_on:
+     - 
+
+ httpserver:
+   build:
+     context: .
+     dockerfile: docker/http.Dockerfile
+     args: DATABASE_URL=postgresql://postgres:mysecretpassword@localhost:5432/postgres
+   environment:
+     - DATABASE_URL=postgresql://postgres:mysecretpassword@localhost:5432/postgres
+   ports:
+     - "3001:3001"
+   depends_on:
+     - 
+  
+ wsserver:
+   build:
+     context: .
+     dockerfile: docker/ws.Dockerfile
+   environment:
+     - DATABASE_URL=postgresql://postgres:mysecretpassword@localhost:5432/postgres
+   ports:
+     - "8080:8080"
+   depends_on:
+     - 
+   
+   

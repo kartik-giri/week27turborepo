@@ -1,0 +1,9 @@
+# Root node_modules
+node_modules
+
+# App node_modules
+apps/http-server/node_modules
+
+# Package node_modules
+packages/db/node_modules
+
