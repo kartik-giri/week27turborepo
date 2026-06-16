@@ -2,6 +2,8 @@ FROM oven/bun:1.3.12-alpine AS base
 # Creating app folder in Image
 WORKDIR /app
 
+RUN apk add --no-cache openssl libc6-compat
+
 # Copying root truborepo package,bun.lock and turbo.json files
 COPY ./package.json ./package.json
 COPY ./bun.lock ./bun.lock
