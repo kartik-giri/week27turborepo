@@ -1,4 +1,4 @@
-FROM oven/bun:1.3.12-alpine AS base
+FROM oven/bun:1.3.12-slim AS base
 # Creating app folder in Image
 WORKDIR /app
 
@@ -20,7 +20,6 @@ COPY ./packages/eslint-config/package.json ./packages/eslint-config/package.json
 COPY ./packages/ui/package.json ./packages/ui/package.json 
 COPY ./packages/zod/package.json ./packages/zod/package.json 
 
-COPY ./packages/db ./packages/db 
 
 
 # Run npm install to install packages in Image
@@ -28,7 +27,7 @@ RUN bun install
 
 # Copying source code of application image and need packages source code.
 COPY ./apps/http-server ./apps/http-server
-# COPY ./packages/db ./packages/db 
+COPY ./packages/db ./packages/db 
 COPY ./packages/typescript-config/backend-config.json ./packages/typescript-config/backend-config.json
 
 # Generate prisma client
