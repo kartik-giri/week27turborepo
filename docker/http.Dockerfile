@@ -23,7 +23,7 @@ COPY ./packages/zod/package.json ./packages/zod/package.json
 # Copy the entire DB folder containing schema.prisma BEFORE install
 COPY ./packages/db ./packages/db
 
-# ---- FIX 1: Prevent Prisma installation hooks from triggering prematurely ----
+# Prevent Prisma installation hooks from triggering prematurely during bun install
 ENV PRISMA_SKIP_POSTINSTALL_GENERATE=true
 
 # Install your monorepo dependencies
@@ -33,8 +33,8 @@ RUN bun install
 COPY ./apps/http-server ./apps/http-server
 COPY ./packages/typescript-config/backend-config.json ./packages/typescript-config/backend-config.json
 
-# ---- FIX 2: Call the local node_modules binary directly using standard node execution ----
-RUN ./node_modules/.bin/prisma generate --schema=./packages/db/schema.prisma
+# ---- FIX: Use bunx with the --bun flag to bypass Node.js requirement ----
+RUN bunx --bun prisma generate --schema=./packages/db/schema.prisma
 
 EXPOSE 3001
 
