@@ -32,7 +32,7 @@ COPY ./packages/typescript-config/backend-config.json ./packages/typescript-conf
 # Each RUN is an isolated shell. When it finishes the shell dies. The next RUN always starts from your WORKDIR regardless.
 # Turbo tries to read workspace context, cache, etc. For a single prisma generate command inside Docker just call prisma directly — simpler and more reliable:
 
-RUN cd packages/db && bunx --bun turbo run db:generate
+RUN bunx --bun turbo run db:generate
 
 EXPOSE 3001
 
