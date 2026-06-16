@@ -2,7 +2,7 @@ name: "Deploying http server on docker hub and VM"
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
   build:
