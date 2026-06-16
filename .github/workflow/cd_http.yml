@@ -1,0 +1,31 @@
+name: "Deploying http server on docker hub and VM"
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the code
+        uses: actions/checkout@v2
+      
+      - name: Docker login
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+      
+      - name: Build and push
+        uses: docker/build-push-action@v4
+        with:
+          context: .
+          file: ./docker/http.Dockerfile
+          push: true
+          # latest is mutable — every push overwrites it. If your deployment breaks, you can't tell which build caused it, and you can't roll back to a specific version easily.
+          # github.sha makes every build immutable and traceable:
+          # push commit abc123 → image kartikgiri/http-server:abc123 gets built and pushed
+          tags: kartikgiri/http-server:${{ github.sha }}
+
+  
