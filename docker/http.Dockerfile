@@ -1,7 +1,7 @@
 FROM oven/bun:1.3.12-slim AS base
 # Creating app folder in Image
 WORKDIR /app
-
+RUN apt-get update && apt-get install -y openssl && rm -rf /var/lib/apt/lists/*
 # RUN apt-get update && apt-get install -y openssl && rm -rf /var/lib/apt/lists/*
 
 # Copying root truborepo package,bun.lock and turbo.json files
