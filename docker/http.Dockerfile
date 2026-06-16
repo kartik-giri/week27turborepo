@@ -20,6 +20,8 @@ COPY ./packages/eslint-config/package.json ./packages/eslint-config/package.json
 COPY ./packages/ui/package.json ./packages/ui/package.json 
 COPY ./packages/zod/package.json ./packages/zod/package.json 
 
+COPY ./packages/db/prisma/schema.prisma ./packages/db/prisma/schema.prisma
+
 
 # Run npm install to install packages in Image
 RUN bun install
