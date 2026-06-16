@@ -28,11 +28,12 @@ COPY ./apps/http-server ./apps/http-server
 # COPY ./packages/db ./packages/db 
 COPY ./packages/typescript-config/backend-config.json ./packages/typescript-config/backend-config.json
 
+ENV DATABASE_URL="postgresql://dummy:dummy@localhost:5432/dummy"
 # Generate prisma client
 # Each RUN is an isolated shell. When it finishes the shell dies. The next RUN always starts from your WORKDIR regardless.
 # Turbo tries to read workspace context, cache, etc. For a single prisma generate command inside Docker just call prisma directly — simpler and more reliable:
 
-RUN bunx --bun turbo run db:generate
+RUN cd packages/db && bun prisma generate
 
 EXPOSE 3001
 
