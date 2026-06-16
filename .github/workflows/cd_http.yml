@@ -37,6 +37,9 @@ jobs:
            port: 22
           #Runs these commands on my EC2
            script: |
-            docker stop http-server || true
-            docker rm http-server || true
-            sudo docker run -e DATABASE_URL=djbdjbchdbc -d -p 8080:8080 kartikgiri/http-server:${{github.sh}}
+            sudo docker stop http-server || true
+            sudo docker rm http-server || true
+
+            sudo docker pull kartikgiri/http-server:${{ github.sha }}
+            
+            sudo docker run -e DATABASE_URL=djbdjbchdbc -d -p 3001:3001 kartikgiri/http-server:${{github.sha}}

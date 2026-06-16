@@ -59,3 +59,4 @@ because the build actually needs data.
 1. We need to create scret for vm private key so github vm can ssh into our VM can pull latest branch and run it.
 2. NOw i need to install docker cause our apps image contains every thing they need to run.
 3. https://docs.docker.com/engine/install/ubuntu/ -> follow this article to install dcoker on VM ubuntu os.
+4. sudo usermod -aG docker ubuntu && newgrp docker -> to allow use docker withour sudo on vm
