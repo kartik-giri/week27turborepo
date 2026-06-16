@@ -28,6 +28,18 @@ COPY ./apps/http-server ./apps/http-server
 # COPY ./packages/db ./packages/db 
 COPY ./packages/typescript-config/backend-config.json ./packages/typescript-config/backend-config.json
 
+# prisma generate
+#       ↓
+# Load schema.prisma
+#       ↓
+# Load prisma.config.ts
+#       ↓
+# Resolve env vars
+#       ↓
+# Validate config
+#       ↓
+# Generate client
+#  That's why we need dummy db url in build phase
 ENV DATABASE_URL="postgresql://dummy:dummy@localhost:5432/dummy"
 # Generate prisma client
 # Each RUN is an isolated shell. When it finishes the shell dies. The next RUN always starts from your WORKDIR regardless.

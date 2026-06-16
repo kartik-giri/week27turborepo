@@ -1,4 +1,4 @@
-name: "Deploying http server on docker hub and VM"
+name: "Deploying  next app on docker hub and VM"
 
 on:
   push:
@@ -21,20 +21,13 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           context: .
-          file: ./docker/http.Dockerfile
+          file: ./docker/web.Dockerfile
+          build-args:
+            - DATABASE_URL:${{secrets.DATABASE_URL}}
           push: true
           # latest is mutable — every push overwrites it. If your deployment breaks, you can't tell which build caused it, and you can't roll back to a specific version easily.
           # github.sha makes every build immutable and traceable:
           # push commit abc123 → image kartikgiri/http-server:abc123 gets built and pushed
-          tags: kartikgiri/http-server:${{ github.sha }}
+          tags: kartikgiri/next_app:${{ github.sha }}
 
-      - name: Deploy to the VM
-        uses: appleboy/ssh-action@v1.2.0
-        with:
-           host: 3.108.207.105
-           username: ubuntu
-           key: ${{secrets.VM_PRIVATE_KEY}}
-           port: 22
-          #Runs these commands on my EC2
-           script: |
-            docker run -e DATABASE_URL=djbdjbchdbc -p -d 8080:8080 kartikgiri/http-server${{gihub.sh}}
+  

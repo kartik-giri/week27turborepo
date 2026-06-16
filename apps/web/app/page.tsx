@@ -1,5 +1,6 @@
 import { prisma } from "@repo/db"
 
+
 const Home =async ()=>{
   const allUser = await prisma.user.findMany();
   return (
@@ -12,3 +13,4 @@ const Home =async ()=>{
 }
 
 export default Home
+export const dynamic = 'force-dynamic'
