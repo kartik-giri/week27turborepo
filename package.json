@@ -7,7 +7,7 @@
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "check-types": "turbo run check-types",
-    "start:http": "cd apps/http-server && bun run start",
+    "start:http": "cd apps/http-server && bun run src/index.ts",
     "start:ws": "cd apps/ws-server && bun run start",
     "start:web": "cd apps/web && bun run start"
   },
