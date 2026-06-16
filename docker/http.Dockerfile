@@ -9,8 +9,15 @@ COPY ./turbo.json ./turbo.json
 
 # Copying application package.json and needed packages package.json file
 COPY ./apps/http-server/package.json ./apps/http-server/package.json
+COPY ./apps/ws-server/package.json ./apps/ws-server/package.json
+COPY ./apps/web/package.json ./apps/web/package.json
+
 COPY ./packages/db/package.json ./packages/db/package.json 
 COPY ./packages/typescript-config/package.json ./packages/typescript-config/package.json
+COPY ./packages/eslint-config/package.json ./packages/eslint-config/package.json 
+COPY ./packages/ui/package.json ./packages/ui/package.json 
+COPY ./packages/zod/package.json ./packages/zod/package.json 
+
 
 # Run npm install to install packages in Image
 RUN bun install
