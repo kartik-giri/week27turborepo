@@ -1,4 +1,4 @@
-FROM oven/bun:1.3.12-slim AS base
+FROM oven/bun:1.3.12-debian AS base
 # Creating app folder in Image
 WORKDIR /app
 
