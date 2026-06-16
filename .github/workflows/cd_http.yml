@@ -37,4 +37,4 @@ jobs:
            port: 22
           #Runs these commands on my EC2
            script: |
-            docker run -e DATABASE_URL=djbdjbchdbc -p -d 8080:8080 kartikgiri/http-server${{gihub.sh}}
+            sudo docker run -e DATABASE_URL=djbdjbchdbc -p -d 8080:8080 kartikgiri/http-server${{gihub.sh}}
