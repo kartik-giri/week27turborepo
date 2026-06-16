@@ -1,8 +1,8 @@
-FROM oven/bun:1.3.12-debian AS base
+FROM oven/bun:1.3.12-slim AS base
 # Creating app folder in Image
 WORKDIR /app
 
-RUN apt-get update && apt-get install -y openssl && rm -rf /var/lib/apt/lists/*
+# RUN apt-get update && apt-get install -y openssl && rm -rf /var/lib/apt/lists/*
 
 # Copying root truborepo package,bun.lock and turbo.json files
 COPY ./package.json ./package.json
@@ -34,7 +34,7 @@ COPY ./packages/typescript-config/backend-config.json ./packages/typescript-conf
 # Each RUN is an isolated shell. When it finishes the shell dies. The next RUN always starts from your WORKDIR regardless.
 # Turbo tries to read workspace context, cache, etc. For a single prisma generate command inside Docker just call prisma directly — simpler and more reliable:
 
-RUN bunx --bun prisma generate --schema=./packages/db/schema.prisma
+RUN cd packages/db && bun prisma generate
 
 EXPOSE 3001
 
