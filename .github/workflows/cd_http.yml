@@ -38,11 +38,10 @@ jobs:
           #Runs these commands on my EC2
            script: |
             sudo docker pull kartikgiri/http-server:${{ github.sha }}
+            
             sudo docker stop http-server || true
-            sudo docker rm http-server || true
 
             
             sudo docker run --restart unless-stopped --name http-server -e DATABASE_URL=djbdjbchdbc -d -p 3001:3001 kartikgiri/http-server:${{github.sha}}
             sudo docker image prune -a -f
 
-            script: |
