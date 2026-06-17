@@ -67,3 +67,4 @@ because the build actually needs data.
 
 ## IMPORTANT:
 1. Analyse sim dcokerfile to optimize image size.
+2.  -e DATABASE_URL=${{secrets.DATABASE_URL}}  -> docker env variables have highest priority that env present in dockerfie and .env
