@@ -29,5 +29,24 @@ jobs:
           # github.sha makes every build immutable and traceable:
           # push commit abc123 → image kartikgiri/http-server:abc123 gets built and pushed
           tags: kartikgiri/next_app:${{ github.sha }}
+      
+      - name: Deploy to the VM
+        uses: appleboy/ssh-action@v1.2.0
+        with:
+           host: 3.108.207.105
+           username: ubuntu
+           key: ${{secrets.VM_PRIVATE_KEY}}
+           port: 22
+          #Runs these commands on my EC2
+          # Second cmd create temprory container and than run migration
+           script: |
+            sudo docker pull kartikgiri/next_app:${{ github.sha }}
+            
+            sudo docker stop next_app || true
+            sudo docker rm next_app || true
+
+            
+            sudo docker run --restart unless-stopped --name next_app -e DATABASE_URL="${{ secrets.DATABASE_URL }}" -d -p 3000:3000 kartikgiri/next_app:${{github.sha}}
+            sudo docker image prune -a -f
 
   
