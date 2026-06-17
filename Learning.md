@@ -61,3 +61,5 @@ because the build actually needs data.
 2. NOw i need to install docker cause our apps image contains every thing they need to run.
 3. https://docs.docker.com/engine/install/ubuntu/ -> follow this article to install dcoker on VM ubuntu os.
 4. sudo usermod -aG docker ubuntu && newgrp docker -> to allow use docker withour sudo on vm
+
+11. Once you move to containers, Docker becomes the thing that keeps your processes alive, while GitHub Actions only deploys new versions. PM2 is most useful when you're running Node.js directly on the VM without containers.
