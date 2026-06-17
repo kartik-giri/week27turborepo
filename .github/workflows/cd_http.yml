@@ -38,7 +38,6 @@ jobs:
           #Runs these commands on my EC2
            script: |
             sudo docker pull kartikgiri/http-server:${{ github.sha }}
-
             sudo docker stop http-server || true
             sudo docker rm http-server || true
 
