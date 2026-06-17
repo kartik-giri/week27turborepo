@@ -22,8 +22,7 @@ jobs:
         with:
           context: .
           file: ./docker/web.Dockerfile
-          build-args:
-            - DATABASE_URL = ${{ secrets.DATABASE_URL }}
+          build-args: DATABASE_URL=${{ secrets.DATABASE_URL }}
           push: true
           # latest is mutable — every push overwrites it. If your deployment breaks, you can't tell which build caused it, and you can't roll back to a specific version easily.
           # github.sha makes every build immutable and traceable:
