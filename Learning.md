@@ -63,3 +63,7 @@ because the build actually needs data.
 4. sudo usermod -aG docker ubuntu && newgrp docker -> to allow use docker withour sudo on vm
 
 11. Once you move to containers, Docker becomes the thing that keeps your processes alive, while GitHub Actions only deploys new versions. PM2 is most useful when you're running Node.js directly on the VM without containers.
+
+
+## IMPORTANT:
+1. Analyse sim dcokerfile to optimize image size.
